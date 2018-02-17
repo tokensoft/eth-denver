@@ -840,7 +840,7 @@ bn.js@4.11.6:
   version "4.11.6"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.6.tgz#53344adb14617a13f6e8dd2ce28905d1c0ba3215"
 
-bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.10.0, bn.js@^4.11.3, bn.js@^4.4.0, bn.js@^4.8.0:
+bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.10.0, bn.js@^4.11.0, bn.js@^4.11.3, bn.js@^4.4.0, bn.js@^4.8.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
 
@@ -1610,9 +1610,23 @@ etag@1.8.1, etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
 
+eth-sig-util@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/eth-sig-util/-/eth-sig-util-1.4.2.tgz#8d958202c7edbaae839707fba6f09ff327606210"
+  dependencies:
+    ethereumjs-abi "git+https://github.com/ethereumjs/ethereumjs-abi.git"
+    ethereumjs-util "^5.1.1"
+
 ethereumjs-abi@^0.6.5:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/ethereumjs-abi/-/ethereumjs-abi-0.6.5.tgz#5a637ef16ab43473fa72a29ad90871405b3f5241"
+  dependencies:
+    bn.js "^4.10.0"
+    ethereumjs-util "^4.3.0"
+
+"ethereumjs-abi@git+https://github.com/ethereumjs/ethereumjs-abi.git":
+  version "0.6.5"
+  resolved "git+https://github.com/ethereumjs/ethereumjs-abi.git#71f123b676f2b2d81bc20f343670d90045a3d3d8"
   dependencies:
     bn.js "^4.10.0"
     ethereumjs-util "^4.3.0"
@@ -1627,6 +1641,18 @@ ethereumjs-util@^4.3.0:
     rlp "^2.0.0"
     secp256k1 "^3.0.1"
 
+ethereumjs-util@^5.1.1:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/ethereumjs-util/-/ethereumjs-util-5.1.4.tgz#d1a4a9be31eaf8b33aad399894f854fdafda2469"
+  dependencies:
+    bn.js "^4.11.0"
+    create-hash "^1.1.2"
+    ethjs-util "^0.1.3"
+    keccak "^1.0.2"
+    rlp "^2.0.0"
+    safe-buffer "^5.1.1"
+    secp256k1 "^3.0.1"
+
 ethjs-abi@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/ethjs-abi/-/ethjs-abi-0.2.1.tgz#e0a7a93a7e81163a94477bad56ede524ab6de533"
@@ -1634,6 +1660,13 @@ ethjs-abi@^0.2.1:
     bn.js "4.11.6"
     js-sha3 "0.5.5"
     number-to-bn "1.7.0"
+
+ethjs-util@^0.1.3:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ethjs-util/-/ethjs-util-0.1.4.tgz#1c8b6879257444ef4d3f3fbbac2ded12cd997d93"
+  dependencies:
+    is-hex-prefixed "1.0.0"
+    strip-hex-prefix "1.0.0"
 
 event-emitter@~0.3.5:
   version "0.3.5"
@@ -2446,6 +2479,15 @@ jsprim@^1.2.2:
 junk@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
+
+keccak@^1.0.2:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/keccak/-/keccak-1.4.0.tgz#572f8a6dbee8e7b3aa421550f9e6408ca2186f80"
+  dependencies:
+    bindings "^1.2.1"
+    inherits "^2.0.3"
+    nan "^2.2.1"
+    safe-buffer "^5.1.0"
 
 keccakjs@^0.2.0:
   version "0.2.1"

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
+    "eth-sig-util": "^1.4.2",
     "ethereumjs-abi": "^0.6.5",
     "next": "^5.0.0",
     "react": "^16.2.0",

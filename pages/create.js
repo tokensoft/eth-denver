@@ -3,17 +3,17 @@ import Layout from '../src/layouts'
 import Head from '../src/components/head'
 import { Component } from 'react'
 import Web3 from 'web3'
-var abi = require('ethereumjs-abi')
 
 const tokenRegulatorServiceDef = require('../build/contracts/TokenRegulatorService.json')
 const ServiceRegistryDef = require('../build/contracts/ServiceRegistry.json')
 const RegulatedTokenDef = require('../build/contracts/RegulatedToken.json')
+const TokenRegistryDef = require('../build/contracts/TokenRegistry.json')
 
-async function createServiceRegulatedToken (web3, instance, registryAddress) {
+async function createServiceRegulatedToken (web3, instance, regulatorAddress, registryAddress) {
   let RegulatedTokenContract = web3.eth.contract(RegulatedTokenDef.abi)
 
   RegulatedTokenContract.new(registryAddress, 'RegToken', 'REG', { from: web3.eth.accounts[0], data: RegulatedTokenDef.bytecode, gas: 4000000 },
-    function (err, tokenInstance) {
+    async function (err, tokenInstance) {
       if (!err) {
         // NOTE: The callback will fire twice!
         // Once the contract has the transactionHash property set and once its deployed on an address.
@@ -23,7 +23,10 @@ async function createServiceRegulatedToken (web3, instance, registryAddress) {
           console.log('Trx Hash:', tokenInstance.transactionHash) // The hash of the transaction, which deploys the contract
           // check address on the second call (contract deployed)
         } else {
-          console.log('Address:', tokenInstance.address) // the contract address
+          console.log('Token Address:', tokenInstance.address) // the contract address
+          let tokenRegistry = await web3.eth.contract(TokenRegistryDef.abi).at('0xe90f43a68756d880f2dc83e0ae1bf51d31726d36')
+          await tokenRegistry.register(tokenInstance.address, regulatorAddress, { from: web3.eth.accounts[0] })
+          console.log('All contracts deployed and registered.')
         }
 
         // Note that the returned "myContractReturned" === "myContract",
@@ -48,8 +51,8 @@ async function createServiceRegistry (web3, instance, regulatorAddress) {
           console.log('Trx Hash:', registryInstance.transactionHash) // The hash of the transaction, which deploys the contract
           // check address on the second call (contract deployed)
         } else {
-          console.log('Address:', registryInstance.address) // the contract address
-          createServiceRegulatedToken(web3, instance, registryInstance.address)
+          console.log('Service Registry Address:', registryInstance.address) // the contract address
+          createServiceRegulatedToken(web3, instance, regulatorAddress, registryInstance.address)
         }
 
         // Note that the returned "myContractReturned" === "myContract",
@@ -74,7 +77,7 @@ async function createTokenRegulator (web3, instance) {
           console.log('Trx Hash:', regulatorInstance.transactionHash) // The hash of the transaction, which deploys the contract
           // check address on the second call (contract deployed)
         } else {
-          console.log('Address:', regulatorInstance.address) // the contract address
+          console.log('Token Regulator Address:', regulatorInstance.address) // the contract address
           createServiceRegistry(web3, instance, regulatorInstance.address)
         }
 
@@ -86,7 +89,7 @@ async function createTokenRegulator (web3, instance) {
     })
 }
 
-export default class Signin extends Component {
+export default class CreateContracts extends Component {
   async createContracts () {
     let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
     await createTokenRegulator(web3, this)
