@@ -114,7 +114,7 @@ const RegulatorServiceForm = props => {
       />
 
       <div className='mt2'>
-        <Button>Deploy</Button>
+        <Button>Create</Button>
       </div>
     </Form>
   )
