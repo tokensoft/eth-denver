@@ -88,7 +88,7 @@ export default class Regulations extends Component {
       <Layout>
         <div className='flex flex-row justify-between items-center'>
           <h2>Regulator Services</h2>
-          <Link href='/regulations/create' className='link near-black'>Create New</Link>
+          <Link href='/regulations/create' className='link near-black'><a>Create New</a></Link>
         </div>
         <Divider />
         <Card.Group>

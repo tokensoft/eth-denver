@@ -68,7 +68,7 @@ export default class Tokens extends Component {
       <Layout>
         <div className='flex flex-row justify-between items-center'>
           <h2>Regulated Tokens</h2>
-          <Link href='/tokens/create' className='link near-black'>Create New</Link>
+          <Link href='/tokens/create' className='link near-black'><a>Create New</a></Link>
         </div>
         <Divider />
         <Card.Group>
