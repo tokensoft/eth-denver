@@ -20,10 +20,10 @@ class Header extends Component {
           <div className='flex flex-column'>
             <Link href='/'>
               <a className='link pointer near-black hover-near-black f3 fw6 flex flex-row items-center'>
-                <span>Etheregg</span>
+                <span>EtherReg</span>
                 <img
                   className='dib h2 pl2'
-                  src='/static/logo.svg'
+                  src='/static/check-square.svg'
                 />
               </a>
             </Link>
