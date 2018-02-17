@@ -4,6 +4,15 @@ import Layout from '../src/layouts'
 export default () => (
   <Layout>
     <div className='absolute top-0 left-0 w-100 vh-100 flex flex-column justify-center align-center'>
+      <div className='center mb4 '>
+        <h1 className='tc'>Compliance on the Blockchain</h1>
+        <ul>
+          <li>Use the R-Token Standard</li>
+          <li>Protect your investors and shareholders</li>
+          <li>Abide by real-world laws and regulations</li>
+          <li>Develop new and <i>reusable</i> Regulation Standards</li>
+        </ul>
+      </div>
       <div className='center flex flex-column flex-row-ns align-center justify-center-ns'>
         <div className='near-black tr-ns'>
           <h2 className='fw6'>For Investors</h2>
