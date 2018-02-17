@@ -1,9 +1,11 @@
+import Head from '../components/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Container from '../components/container'
 
 const Layout = ({ children }) => (
   <div className='flex flex-column flex-auto min-vh-100 sans-serif near-black bg-near-white'>
+    <Head />
     <Header />
     <main className='flex-auto'>
       <Container>
