@@ -45,33 +45,33 @@ const RegulatorServiceForm = props => {
         label="Description" name="description" placeholder="A brief explanation of your regulation"
       />
 
-      <h4 className='mb0'>Restrictions</h4>
+      <h4 className='mb0'>Investor Restrictions</h4>
       <Divider />
       <Grid>
         <Grid.Column computer={8}>
           <Form.Input
             required
             onChange={handleChange}
-            label="Min Age" name="minAge" defaultValue={16} min={16} type="number"
+            label="Min Investor Age" name="minAge" defaultValue={16} min={16} type="number"
           />
         </Grid.Column>
         <Grid.Column computer={8}>
           <Form.Input
             onChange={handleChange}
-            label="Max Age" name="maxAge" type="number" placeholder={'N/A'}
+            label="Max Investor Age" name="maxAge" type="number" placeholder={'N/A'}
           />
         </Grid.Column>
         <Grid.Column computer={8} className='mb3'>
           <Form.Input
             required
             onChange={handleChange}
-            label="Min Investors" name="minInvestors" type="number" min={1} defaultValue={1}
+            label="Min Num Investors" name="minInvestors" type="number" min={1} defaultValue={1}
           />
         </Grid.Column>
         <Grid.Column computer={8} className='mb3'>
           <Form.Input
             onChange={handleChange}
-            label="Max Investors" name="maxInvestors" type="number" min={1} placeholder={'Unlimited'}
+            label="Max Num Investors" name="maxInvestors" type="number" min={1} placeholder={'Unlimited'}
           />
         </Grid.Column>
       </Grid>
