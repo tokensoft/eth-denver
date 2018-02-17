@@ -111,6 +111,10 @@ contract TokenRegulatorService is RegulatorService, Ownable {
 
     LogLockSet(_token, _locked);
   }
+  
+  function getLocked(address _token) public view returns (bool) {
+    return settings[_token].locked;
+  }
 
   /**
    * @notice Allows the ability to trade a fraction of a token
@@ -125,16 +129,28 @@ contract TokenRegulatorService is RegulatorService, Ownable {
    LogPartialTransferSet(_token, _enabled);
   }
 
+  function getPartialTransfers(address _token) public view returns (bool) {
+    return settings[_token].partialTransfers;
+  }
+
   function setEnforceAmlKyc(address _token, bool _enforce) onlyOwner public {
    settings[_token].enforceAmlKYC = _enforce;
 
    // LogPartialTransferSet(_token, _enabled);
   }
 
+  function getEnforceAmlKyc(address _token) public view returns (bool) {
+    return settings[_token].enforceAmlKYC;
+  }
+
   function setEnforceGeography(address _token, bool _enforce) onlyOwner public {
    settings[_token].enforceGeography = _enforce;
 
    // LogPartialTransferSet(_token, _enabled);
+  }
+
+  function getEnforceGeography(address _token) public view returns (bool) {
+    return settings[_token].enforceGeography;
   }
 
   /**
