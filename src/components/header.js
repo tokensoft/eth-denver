@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { promisify } from 'bluebird'
 import Link from 'next/link'
 import numeral from 'numeral'
 import Container from './container'
