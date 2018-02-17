@@ -37,6 +37,9 @@ contract TokenRegulatorService is RegulatorService, Ownable {
     bool enforceAmlKYC;
 
     bool enforceGeography;
+
+    string name;
+    string description;
   }
 
   // @dev Check success code
@@ -74,6 +77,9 @@ contract TokenRegulatorService is RegulatorService, Ownable {
 
   // @dev Address of the administrator
   address public admin;
+
+  string public name;
+  string public description;
 
   /// @notice Permissions that allow/disallow token trades on a per token level
   mapping(address => Settings) private settings;
@@ -151,6 +157,14 @@ contract TokenRegulatorService is RegulatorService, Ownable {
 
   function getEnforceGeography(address _token) public view returns (bool) {
     return settings[_token].enforceGeography;
+  }
+
+  function setName(string _name) onlyOwner public {
+   name = _name;
+  }
+
+  function setDescription(string _description) onlyOwner public {
+   description = _description;
   }
 
   /**

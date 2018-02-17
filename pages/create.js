@@ -67,7 +67,7 @@ async function createTokenRegulator (web3, instance) {
   let TokenRegulatorContract = web3.eth.contract(tokenRegulatorServiceDef.abi)
 
   TokenRegulatorContract.new({ from: web3.eth.accounts[0], data: tokenRegulatorServiceDef.bytecode, gas: 4000000 },
-    function (err, regulatorInstance) {
+    async function (err, regulatorInstance) {
       if (!err) {
         // NOTE: The callback will fire twice!
         // Once the contract has the transactionHash property set and once its deployed on an address.
@@ -78,6 +78,11 @@ async function createTokenRegulator (web3, instance) {
           // check address on the second call (contract deployed)
         } else {
           console.log('Token Regulator Address:', regulatorInstance.address) // the contract address
+
+          let regulator = await web3.eth.contract(tokenRegulatorServiceDef.abi).at(regulatorInstance.address)
+          await regulator.setName('Regulator 1', { from: web3.eth.accounts[0] })
+          await regulator.setDescription('Regulator 1 provides whitelising based on US location.', { from: web3.eth.accounts[0] })
+
           createServiceRegistry(web3, instance, regulatorInstance.address)
         }
 
