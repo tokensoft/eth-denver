@@ -6,21 +6,6 @@ import Web3 from 'web3'
 const TokenRegistryDef = require('../build/contracts/TokenRegistry.json')
 const tokenRegulatorServiceDef = require('../build/contracts/TokenRegulatorService.json')
 
-const mockRegulationServices = [
-  {
-    name: 'Bureau of Alcohol',
-    contract: '0x3bB0a1245C4ee5e5a2006Ea6503E1720891e0A3D',
-    admin: '0xaDCf259Cca830eEbB0a2927BC3E6F5f5A143E79E',
-    description: 'Deny ownership of alcohol to persons under 21 in the United States.'
-  },
-  {
-    name: 'Colorado DMV',
-    contract: '0xy4583bB0a1245C4ee5e5a2006Ea6503E1720891e',
-    admin: '0x43E7259Cca830eEbB0a2927BC3E6F5f5A143E79E',
-    description: 'Deny ownership of Colorado state drivers licenses to persons under 16.'
-  }
-]
-
 export default class Regulations extends Component {
   constructor (props) {
     super(props)

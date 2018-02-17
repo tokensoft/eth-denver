@@ -62,7 +62,7 @@ export default class Tokens extends Component {
       tokenDetails.push(this.getTokenInfo(tokens[i]))
     }
 
-    // console.log(tokenDetails)
+    console.log(tokenDetails)
 
     return (
       <Layout>
@@ -82,7 +82,19 @@ export default class Tokens extends Component {
                     <a href='#' className='link underline-hover'>{token.address.slice(0, 10)}...</a>
                   </span>
                 </Card.Meta>
-                <Card.Description>{token.name}</Card.Description>
+                <Card.Meta>
+                  <span className='db'>
+                    <label>Name: </label>
+                    {token.name}
+                  </span>
+                </Card.Meta>
+                <Card.Meta>
+                  <span className='db'>
+                    <label>Decimals: </label>
+                    {token.decimals.toNumber()}
+                  </span>
+                </Card.Meta>
+
               </Card.Content>
               <Card.Content extra>
                 <Button className='w-100' basic>Regulator Service</Button>

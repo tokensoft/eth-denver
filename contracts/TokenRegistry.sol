@@ -15,10 +15,15 @@ contract TokenRegistry is Ownable {
   }
 
   function register(address _token, address _regulator) onlyOwner public {
-    tokens.push(_token);
-    tokenCount += 1;
-    regulators.push(_regulator);
-    regulatorCount += 1;
+    if (_token != 0) {
+      tokens.push(_token);
+      tokenCount += 1;
+    }
+
+    if (_regulator != 0) {
+      regulators.push(_regulator);
+      regulatorCount += 1;
+    }
   }
 
   function getToken(uint _index) public view returns (address) {
