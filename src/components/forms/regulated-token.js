@@ -1,16 +1,17 @@
 import { Form, Checkbox, Divider, Grid, Button } from 'semantic-ui-react'
 import withSemanticUIFormik from '../hocs/withSemanticUIFormik'
 
-const mockRegulatorServiceOptions = [
-  {
-    text: 'Bureau of Alcohol',
-    value: '0x12334645745745635473574674747'
-  },
-  {
-    text: 'Colorado DMV',
-    value: '0x123346457457456354ff574674747'
+function buildRegultorList (regulators) {
+  let list = []
+  for (let i = 0; i < regulators.length; i++) {
+    list.push({
+      text: regulators[i].name,
+      value: regulators[i].address
+    })
   }
-]
+
+  return list
+}
 
 const RegulatedTokenForm = props => {
   const {
@@ -22,56 +23,69 @@ const RegulatedTokenForm = props => {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset
+    handleReset,
+    regulators
   } = props
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2 className='tc'>Create Regulated Token</h2>
       <h4 className='mb0'>Details</h4>
       <Divider />
       <Form.Input
         required
         onChange={handleChange}
-        label="Name" name="name"
+        label='Name'
+        name='name'
       />
       <Form.Input
         required
         onChange={handleChange}
-        label="Symbol" name="symbol"
+        label='Symbol' name='symbol'
       />
       <Form.Input
         required
         onChange={handleChange}
-        type="numer"
-        label="Decimals" name="decimals" defaultValue={18}
+        type='number'
+        label='Decimals' name='decimals'
+        value={values.decimals}
       />
       <Form.Input
         required
         onChange={handleChange}
-        type="numer"
-        label="Total Supply" name="totalSupply"
+        type='number'
+        label='Total Supply' name='totalSupply'
+        value={values.totalSupply}
       />
       <h4 className='mb0'>Regulation</h4>
       <Divider />
       <Form.Dropdown selection
-        name="regulatorService"
+        name='regulatorService'
         search
         required
         onChange={handleChange}
-        label="Regulator Service"
-        options={mockRegulatorServiceOptions}
+        label='Regulator Service'
+        options={buildRegultorList(regulators)}
+        value={values.regulatorService}
       />
       <div className='mt2'>
-        <Button>Deploy Registry*</Button>
-        <Button disabled>Create Token</Button>
+        <Button >Create Token</Button>
       </div>
-      <p className='f7'>* This is a required intermediary contract deployment.</p>
     </Form>
   )
-
 }
 
 export default withSemanticUIFormik({
-
+  handleSubmit: (values, {props}) => {
+    props.createToken(values)
+  },
+  mapPropsToValues: (props) => {
+    let regList = buildRegultorList(props.regulators)
+    console.log('regList', regList)
+    return {
+      decimals: 18,
+      totalSupply: 1000000,
+      regulatorService: regList.length && regList[0].value
+    }
+  }
 })(RegulatedTokenForm)

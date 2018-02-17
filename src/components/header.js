@@ -28,7 +28,7 @@ class Header extends Component {
               </a>
             </Link>
             <div className='flex flex-row z-999'>
-              <Link href='/regulations'><a className='link near-black underline-hover'>Regulations</a></Link>
+              <Link href='/regulations'><a className='link near-black underline-hover'>Regulators</a></Link>
               <span>&nbsp;|&nbsp;</span>
               <Link href='/tokens'><a className='link near-black underline-hover'>R-Tokens</a></Link>
             </div>

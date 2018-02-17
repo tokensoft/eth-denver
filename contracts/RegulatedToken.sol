@@ -12,6 +12,7 @@ contract RegulatedToken is DetailedERC20, MintableToken {
    * @notice R-Token decimals setting (used when constructing DetailedERC20)
    */
   uint8 constant public RTOKEN_DECIMALS = 18;
+  uint256 constant public RTOKEN_SUPPLY = 1000000;
 
   /**
    * @notice Triggered when regulator checks pass or fail
@@ -36,6 +37,9 @@ contract RegulatedToken is DetailedERC20, MintableToken {
     DetailedERC20(_name, _symbol, RTOKEN_DECIMALS)
   {
     require(_registry != address(0));
+
+    totalSupply_ = RTOKEN_SUPPLY;
+    balances[msg.sender] = RTOKEN_SUPPLY;
 
     registry = _registry;
   }
