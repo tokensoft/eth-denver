@@ -16,6 +16,7 @@ const Head = (props) => (
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
     <link rel="icon" href="/static/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.9.1/tachyons.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Varela+Round&amp;subset=latin-ext" rel="stylesheet" />
     <meta property="og:url" content={props.url || defaultOGURL} />
     <meta property="og:title" content={props.title || ''} />
