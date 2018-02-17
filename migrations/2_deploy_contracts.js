@@ -7,6 +7,8 @@ let TokenRegistry = artifacts.require('./TokenRegistry')
 module.exports = async function (deployer) {
   deployer.deploy(TokenRegulatorService).then(async () => {
     let regulator = await TokenRegulatorService.deployed()
+    await regulator.setName('Accredited Investor Regulator')
+    await regulator.setDescription('Allows only Accredited Investors to receive this token.')
     console.log('Regulator', regulator.address)
 
     let serviceRegistry = await ServiceRegistry.new(regulator.address)
