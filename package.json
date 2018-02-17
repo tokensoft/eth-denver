@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
+    "country-list": "^1.1.0",
     "eth-sig-util": "^1.4.2",
     "ethereumjs-abi": "^0.6.5",
+    "formik": "^0.11.10",
     "next": "^5.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "run-with-testrpc": "^0.3.0",
+    "semantic-ui-react": "^0.78.2",
     "truffle": "^4.0.6",
     "web3": "^0.20.0",
     "zeppelin-solidity": "^1.6.0"
