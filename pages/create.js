@@ -24,7 +24,7 @@ async function createServiceRegulatedToken (web3, instance, regulatorAddress, re
           // check address on the second call (contract deployed)
         } else {
           console.log('Token Address:', tokenInstance.address) // the contract address
-          let tokenRegistry = await web3.eth.contract(TokenRegistryDef.abi).at('0xe90f43a68756d880f2dc83e0ae1bf51d31726d36')
+          let tokenRegistry = await web3.eth.contract(TokenRegistryDef.abi).at('0x87bec500d7955d454401ef33caa585c59c8639ce')
           await tokenRegistry.register(tokenInstance.address, regulatorAddress, { from: web3.eth.accounts[0] })
           console.log('All contracts deployed and registered.')
         }
