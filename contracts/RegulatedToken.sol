@@ -13,6 +13,7 @@ contract RegulatedToken is DetailedERC20, MintableToken {
    */
   uint8 constant public RTOKEN_DECIMALS = 18;
   uint256 constant public RTOKEN_SUPPLY = 1000000;
+  uint256 constant BASE_UNITS = 10 ** 18;
 
   /**
    * @notice Triggered when regulator checks pass or fail
@@ -38,8 +39,8 @@ contract RegulatedToken is DetailedERC20, MintableToken {
   {
     require(_registry != address(0));
 
-    totalSupply_ = RTOKEN_SUPPLY;
-    balances[msg.sender] = RTOKEN_SUPPLY;
+    totalSupply_ = RTOKEN_SUPPLY * BASE_UNITS;
+    balances[msg.sender] = RTOKEN_SUPPLY * BASE_UNITS;
 
     registry = _registry;
   }

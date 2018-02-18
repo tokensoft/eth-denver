@@ -4,6 +4,7 @@
     "dev": "run-with-testrpc --seed 1234 'truffle migrate && next'",
     "build": "next build",
     "start": "next start",
+    "next" :"next",
     "test": "truffle test",
     "compile": "truffle compile",
     "migrate": "truffle migrate",
