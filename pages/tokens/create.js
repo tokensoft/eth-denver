@@ -97,7 +97,6 @@ export default class Regulations extends Component {
 
   async getTokenRegistrations () {
     let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
-    console.log(web3.eth.coinbase)
     let tokenRegistry = await web3.eth.contract(TokenRegistryDef.abi).at('0x87bec500d7955d454401ef33caa585c59c8639ce')
 
     let count = tokenRegistry.regulatorCount().toNumber()

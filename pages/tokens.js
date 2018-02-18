@@ -6,6 +6,9 @@ import { promisify } from 'bluebird'
 import Web3 from 'web3'
 import Modal from '../src/components/modal'
 import SendTokensForm from '../src/components/forms/send-tokens'
+import numeral from 'numeral'
+
+const BigNumber = require('bignumber.js')
 const TokenRegistryDef = require('../build/contracts/TokenRegistry.json')
 const ServiceRegistryDef = require('../build/contracts/ServiceRegistry.json')
 const RegulatedTokenDef = require('../build/contracts/RegulatedToken.json')
@@ -40,13 +43,24 @@ export default class Tokens extends Component {
   }
 
   getTokenInfo (tokenAddress) {
-    let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
-    let token = web3.eth.contract(RegulatedTokenDef.abi).at(tokenAddress)
+    let balance = 0    
+    
+    let localHostWeb3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+    let token = localHostWeb3.eth.contract(RegulatedTokenDef.abi).at(tokenAddress)
+
+    if(typeof web3 !== undefined) {
+      let metamaskWeb3 = new Web3(web3.currentProvider)
+      balance = token.balanceOf(metamaskWeb3.eth.coinbase)
+      balance =  balance.div(new BigNumber(10).pow(18)).toNumber()
+    }
+    
+    console.log({balance})
     let ret = {
       address: tokenAddress,
       name: token.name(),
       symbol: token.symbol(),
-      decimals: token.decimals().toNumber()
+      decimals: token.decimals().toNumber(),
+      balance
     }
     return ret
   }
@@ -189,6 +203,12 @@ export default class Tokens extends Component {
                   <span className='db'>
                     <label>Decimals: </label>
                     {token.decimals}
+                  </span>
+                </Card.Meta>
+                <Card.Meta>
+                  <span className='db'>
+                    <label>Your Balance: </label>
+                    {numeral(token.balance).format('0,0')}
                   </span>
                 </Card.Meta>
 
