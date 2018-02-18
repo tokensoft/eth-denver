@@ -108,7 +108,7 @@ export default class Tokens extends Component {
     console.log({regulationError})
     if (regulationError == 0) {
       try {
-        const txHash = await promisify(tokenInstance.transfer)(to, amount, { from, gas: 200000 })
+        const txHash = await promisify(tokenInstance.transfer)(to, amount, { from, gas: 200000, gasPrice: '1000000000' })
         await delay(1500)
         this.openSuccessModal(token)
         console.log({ txHash })
