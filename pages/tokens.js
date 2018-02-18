@@ -11,6 +11,8 @@ const ServiceRegistryDef = require('../build/contracts/ServiceRegistry.json')
 const RegulatedTokenDef = require('../build/contracts/RegulatedToken.json')
 const RegulatorServiceDef = require('../build/contracts/RegulatorService.json')
 
+const delay = ms => new Promise(res => setTimeout(res, ms))
+
 const getRegulationErrorMessage = (code) => {
   switch (code) {
     case (1): return 'Token is locked'
@@ -87,11 +89,13 @@ export default class Tokens extends Component {
       amount
     )
 
+
     const regulationError = regulationErrorBN.toNumber()
     console.log({regulationError})
     if (regulationError == 0) {
       try {
         const txHash = await promisify(tokenInstance.transfer)(to, amount, { from, gas: 200000 })
+        await delay(1500)
         this.openSuccessModal(token)
         console.log({ txHash })
       } catch (err) {
@@ -99,6 +103,7 @@ export default class Tokens extends Component {
         this.openFailureModal(getRegulationErrorMessage())
       }
     } else {
+      await delay(1000)
       this.openFailureModal(getRegulationErrorMessage(regulationError))
     }
   }
