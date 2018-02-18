@@ -95,7 +95,7 @@ export default class Regulations extends Component {
                 <Card.Description>{regService.description}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Button className='w-100' basic>Regulated Tokens</Button>
+                <Link href='/tokens/create'><Button className='w-100' basic>Create Token</Button></Link>
               </Card.Content>
             </Card>
       ))}
