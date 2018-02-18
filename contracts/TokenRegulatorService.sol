@@ -223,10 +223,9 @@ contract TokenRegulatorService is RegulatorService, Ownable {
     }
 
     if (participants[_token][_from] & PERM_SEND == 0) {
-      if (_from == owner || _from == admin) {
-        return CHECK_SUCCESS;
-      } 
-      return CHECK_ESEND;
+      if (_from != owner && _from != admin) {
+        return CHECK_ESEND;
+      }       
     }
 
     if (participants[_token][_to] & PERM_RECEIVE == 0) {
