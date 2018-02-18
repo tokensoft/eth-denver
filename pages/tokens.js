@@ -88,20 +88,12 @@ export default class Tokens extends Component {
     )
 
     const regulationError = regulationErrorBN.toNumber()
+    console.log({regulationError})
     if (regulationError == 0) {
-      // const transferData = tokenInstance.transfer.getData(to, amount)
-      // const txObject = {
-      //   to: token.address,
-      //   from,
-      //   data: transferData,
-      //   gas: 200000
-      // }
-
-      // const txHash = await promisify(web3.eth.sendTransaction)(txObject)
       try {
-        // const txHash = await promisify(tokenInstance.transfer)(to, amount, { from, gas: 200000 })
+        const txHash = await promisify(tokenInstance.transfer)(to, amount, { from, gas: 200000 })
         this.openSuccessModal(token)
-        // console.log({ txHash })
+        console.log({ txHash })
       } catch (err) {
         console.error(err)
         this.openFailureModal(getRegulationErrorMessage())
