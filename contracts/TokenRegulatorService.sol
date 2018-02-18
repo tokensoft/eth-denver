@@ -216,16 +216,16 @@ contract TokenRegulatorService is RegulatorService, Ownable {
    *
    * @return `true` if the trade should be approved and  `false` if the trade should not be approved
    */
-  function check(address _token, address _spender, address _from, address _to, uint256 _amount) public returns (uint8) {
-    if (_from == owner || _from == admin) {
-      return CHECK_SUCCESS;
-    }
+  function check(address _token, address _spender, address _from, address _to, uint256 _amount) public returns (uint8) {    
 
     if (settings[_token].locked) {
       return CHECK_ELOCKED;
     }
 
     if (participants[_token][_from] & PERM_SEND == 0) {
+      if (_from == owner || _from == admin) {
+        return CHECK_SUCCESS;
+      } 
       return CHECK_ESEND;
     }
 

@@ -203,7 +203,7 @@ export default class Tokens extends Component {
           <Modal onClose={this.closeTokenModal}>
             <SendTokensForm
               token={this.state.modalToken || {}}
-              transferToken={this.transferToken}
+              transferToken={this.transferToken.bind(this)}
             />
           </Modal>
         }
