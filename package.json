@@ -2,6 +2,7 @@
   "name": "create-next-example-app",
   "scripts": {
     "dev": "run-with-testrpc --seed 1234 'truffle migrate && next'",
+    "prod": "run-with-testrpc --seed 1234 'truffle migrate && next build && next start'",
     "build": "next build",
     "start": "next start",
     "next" :"next",
