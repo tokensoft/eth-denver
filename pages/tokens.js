@@ -33,6 +33,7 @@ export default class Tokens extends Component {
       modalToken: undefined,
       showSuccessModal: false,
       showFailureModal: false,
+      errorMessage: undefined
     }
   }
 
@@ -208,13 +209,13 @@ export default class Tokens extends Component {
         }
         { this.state.showSuccessModal &&
           <Modal onClose={this.closeTokenModal}>
-            <h2 className='tc'>Send {this.state.modalToken.symbol}</h2>
+            <h2 className='tc'>Send {this.state.modalToken && this.state.modalToken.symbol}</h2>
             <p>Success!</p>
           </Modal>
         }
         { this.state.showFailureModal &&
           <Modal onClose={this.closeTokenModal}>
-            <h2 className='tc'>Send {this.state.modalToken.symbol}</h2>
+            <h2 className='tc'>Send {this.state.modalToken && this.state.modalToken.symbol}</h2>
             <h4 className='mb0'>Failure</h4>
             <Divider />
             <p>{this.state.errorMessage}</p>
