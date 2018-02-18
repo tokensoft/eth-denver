@@ -72,9 +72,6 @@ export default class Tokens extends Component {
   }
 
   async transferToken ({ to, from, injectedWeb3: web3, token, amount }) {
-
-    // TODO: CHECK ON REGULATOR SERVICE IF USER CAN EVEN TRANSFER
-    // /?????????????????????????????????????????????????????????
     const tokenInstance = web3.eth.contract(RegulatedTokenDef.abi).at(token.address)
     const tokenName = await promisify(tokenInstance.name)()
     const serviceRegistryAddress = await promisify(tokenInstance.registry)()
@@ -94,14 +91,15 @@ export default class Tokens extends Component {
     if (regulationError == 0) {
       const transferData = tokenInstance.transfer.getData(to, amount)
       const txObject = {
-        to: token.contract,
+        to: token.address,
         from,
         data: transferData,
-        gasLimit: web3.toHex(200000)
+        gas: 200000
       }
 
       const txHash = await promisify(web3.eth.sendTransaction)(txObject)
-      const txReceipt = await zeroEx.awaitTransactionMinedAsync(txHash)
+      // const txReceipt = await zeroEx.awaitTransactionMinedAsync(txHash)
+      console.log({ txHash })
       this.openSuccessModal(token)
     } else {
       this.openFailureModal(getRegulationErrorMessage(regulationError))
